@@ -73,6 +73,7 @@ export default {
     CheckClass,
     SetTiming,
     SetRepeat,
+    SvgIcon,
   },
   data() {
     return {

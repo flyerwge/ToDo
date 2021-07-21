@@ -21,8 +21,12 @@
 </template>
 
 <script>
+import SvgIcon from "../../SvgIcon.vue";
 export default {
   name: "SetTiming",
+  components: {
+    SvgIcon,
+  },
   computed: {
     inputSettingIsError() {
       return this.$store.state.inputSettingIsError;
@@ -34,7 +38,7 @@ export default {
   watch: {},
   methods: {
     testingInputType(input, type) {
-      this.$store.commit('inputSettingIsErrorMethods', 'init');
+      this.$store.commit("inputSettingIsErrorMethods", "init");
       let baseInput = input;
       if (input.length == 1) {
         baseInput = "0" + input;
@@ -45,12 +49,12 @@ export default {
         switch (type) {
           case "hour":
             if (!hour.test(baseInput)) {
-              this.$store.commit('inputSettingIsErrorMethods', 'test');
+              this.$store.commit("inputSettingIsErrorMethods", "test");
             }
             break;
           case "minute":
             if (!minute.test(baseInput)) {
-              this.$store.commit('inputSettingIsErrorMethods', 'test');
+              this.$store.commit("inputSettingIsErrorMethods", "test");
             }
             break;
         }

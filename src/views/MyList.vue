@@ -55,9 +55,8 @@
             新建打卡
           </div>
         </div>
+        <clock-in ref="clockIn" @edit-item="editItem"></clock-in>
       </div>
-
-      <clock-in ref="clockIn" @edit-item="editItem"></clock-in>
     </div>
 
     <!-- 新建待办窗口 -->
@@ -87,6 +86,7 @@ export default {
     EditTodo,
     Popup,
   },
+
   data() {
     return {
       // 今天
@@ -138,7 +138,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* 定义标题样式 */
 h2 {
   display: inline;

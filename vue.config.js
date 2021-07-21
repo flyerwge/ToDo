@@ -20,4 +20,8 @@ module.exports = {
                 symbolId: 'icon-[name]'
             })
     },
+    configureWebpack: {
+        // devtool
+        devtool: 'cheap-module-eval-source-map'
+    }
 }

@@ -1,4 +1,3 @@
-// 定义混入对象
 const calendarAlgorithm = {
   data() {
     return {
@@ -8,7 +7,6 @@ const calendarAlgorithm = {
       day: null,
     }
   },
-
   computed: {
     // 每个月有多少天
     daysInMonth() {
@@ -49,7 +47,6 @@ const calendarAlgorithm = {
       return visibleList;
     },
   },
-
   methods: {
     // 前月
     preMonth(visibleList) {
@@ -71,7 +68,6 @@ const calendarAlgorithm = {
         }
       }
     },
-
     // 本月
     thisMonth(visibleList) {
       for (let i = 0; i < this.daysInMonth[this.month]; i++) {
@@ -83,7 +79,6 @@ const calendarAlgorithm = {
         visibleList.push(obj);
       }
     },
-
     // 次月
     nextMonth(visibleList) {
       // 判断下一个月需要展示多少天
@@ -106,7 +101,6 @@ const calendarAlgorithm = {
         visibleList.push(obj);
       }
     },
-
     addYear(visibleList, i) {
       // 如果month属性的值是11，且type属性为pre，则年份减1，month为1时同理
       if (visibleList[i].month == 11 && visibleList[i].type == "pre") {
@@ -117,7 +111,6 @@ const calendarAlgorithm = {
         visibleList[i].year = this.year;
       }
     },
-
     addTimestamp(visibleList, i) {
       let date = this.dayjs(
         new Date(
@@ -132,6 +125,5 @@ const calendarAlgorithm = {
     },
   }
 }
-
 
 export default calendarAlgorithm;

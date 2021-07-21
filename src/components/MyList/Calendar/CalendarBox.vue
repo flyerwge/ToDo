@@ -16,6 +16,7 @@
             <svg-icon id="right-arrow" icon-class="icon-jiantou"></svg-icon>
           </div>
         </div>
+
         <!-- 日历主体部分 -->
         <div class="calendar-body-main">
           <div
@@ -33,12 +34,17 @@
           </div>
         </div>
       </div>
+
       <!-- 星期 -->
       <div class="week" :class="{ isopen: calendarIsOpen }">
-        <span class="week-title" v-for="(d, index) in week" :key="index">{{
-          d
-        }}</span>
+        <span
+          class="week-title"
+          v-for="(weekday, index) in week"
+          :key="index"
+          >{{ weekday }}</span
+        >
       </div>
+
       <!-- 展开和关闭按钮 -->
       <div class="calendar-footer" :class="{ isopen: calendarIsOpen }">
         <div @click="switchBox">
@@ -137,6 +143,7 @@ export default {
       this.highLight = this.targetDay;
       this.$store.commit("updateSelect", this.selectTimestamp);
     },
+
     // 回到今天
     selectInit() {
       this.year = this.dayjs().year();
@@ -158,6 +165,7 @@ export default {
   updated() {
     // css变量绑定
     this.declaration.setProperty("--calendar-1", this.boxDisplacement);
+    console.log(this.boxDisplacement);
   },
 };
 </script>
@@ -329,7 +337,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
+  width: 100%;
   height: 16px;
   cursor: pointer;
 }

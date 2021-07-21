@@ -9,22 +9,26 @@
     />
     <label for="check-setting" class="set" @click="$emit('toparent')">
       <svg-icon :icon-class="icon"></svg-icon>
-      <p>{{ setting == 'todo'?'设置定时':'设置重复' }}</p>
+      <p>{{ setting == "todo" ? "设置定时" : "设置重复" }}</p>
     </label>
   </div>
 </template>
 
 <script>
+import SvgIcon from "../../SvgIcon.vue";
 export default {
-  name: 'CheckClass',
-  props: ['icon', 'setting', 'isopen'],
+  name: "CheckClass",
+  components: {
+    SvgIcon,
+  },
+  props: ["icon", "setting", "isopen"],
   data() {
     return {
       // 设置是否打开
       settingIsOpen: this.isopen,
-    }
+    };
   },
-}
+};
 </script>
 
 <style scoped>
@@ -39,7 +43,7 @@ export default {
   align-items: center;
   width: 6.5rem;
   height: 2rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   cursor: pointer;
   border-radius: 6px;
 }

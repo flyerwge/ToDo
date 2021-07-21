@@ -7,6 +7,7 @@
     <div class="box">
       <div class="list">
         <span class="name">主题皮肤</span>
+
         <div class="colors">
           <div class="color-list" @click="changeTheme('blue')">
             <div class="color-info blue">蓝<br />色</div>
@@ -49,24 +50,21 @@ export default {
   data() {
     return {
       theme: this.$store.state.theme,
-
-      // declaration: document.styleSheets[0].cssRules[0].style,
     };
   },
 
   methods: {
     changeTheme(theme) {
       this.theme = theme;
-      // this.$parent.changeThemes(theme);
-      this.$$emit("theme", theme);
+      this.$store.state.theme = theme;
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .setting {
-  margin: 0 2rem;
+  padding: 0 2rem;
 }
 .set-title {
   display: flex;

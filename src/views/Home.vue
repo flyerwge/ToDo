@@ -4,7 +4,7 @@
     <div id="tab">
       <div class="logo-box">
         <img class="logo" src="../assets/png/flyer.png" alt="" />
-        <h2 id="logo-text">ToDo</h2>
+        <h2>ToDo</h2>
       </div>
 
       <!-- 用户信息 -->
@@ -27,10 +27,12 @@
         <span class="nav-name">{{ router.value }}</span>
       </router-link>
 
-      <a class="nav" href="https://github.com/flyerwge" target="_blank">
-        <svg-icon iconClass="icon-about"></svg-icon>
-        <span class="nav-name">关于</span>
-      </a>
+      <div class="nav">
+        <a class="nav" href="https://github.com/flyerwge" target="_blank">
+          <svg-icon iconClass="icon-about"></svg-icon>
+          <span class="nav-name">GitHub</span>
+        </a>
+      </div>
 
       <!-- 待办分类 -->
       <div class="color">
@@ -46,6 +48,7 @@
         </div>
       </div>
     </div>
+
     <!-- 主视区 -->
     <div class="main">
       <!-- 头部 -->
@@ -92,6 +95,18 @@ export default {
           value: "设置",
           to: "/setting",
         },
+      ],
+
+      grayColors: [
+        "rgba(15, 23, 42, 0.02)",
+        "rgba(15, 23, 42, 0.04)",
+        "rgba(15, 23, 42, 0.06)",
+        "rgba(15, 23, 42, 0.15)",
+        "rgba(15, 23, 42, 0.25)",
+        "rgba(15, 23, 42, 0.45)",
+        "rgba(15, 23, 42, 0.65)",
+        "rgba(15, 23, 42, 0.85)",
+        "rgba(15, 23, 42, 0.1)",
       ],
 
       themeColors: {
@@ -190,6 +205,13 @@ export default {
   methods: {
     // 更换主题
     changeThemes(theme) {
+      console.log(theme);
+      this.declaration.setProperty("--BG", "#fff");
+
+      for (let i = 1; i <= 9; i++) {
+        this.declaration.setProperty("--Gray-" + i, this.grayColors[i]);
+      }
+
       for (let i = 1; i <= 10; i++)
         this.declaration.setProperty(
           "--Theme-" + i,
@@ -197,7 +219,23 @@ export default {
         );
       this.declaration.setProperty("--Theme-A2", this.themeColors[theme][10]);
       this.declaration.setProperty("--Vice-Theme", this.themeColors[theme][11]);
+
+      // this.declaration.setProperty("--class-red", "#ef4444");
+      // this.declaration.setProperty("--class-red-sec", "#fee2e2");
+      // this.declaration.setProperty("--class-blue", "#3b82f6");
+      // this.declaration.setProperty("--class-blue-sec", "#dbeafe");
+      // this.declaration.setProperty("--class-emerald", "#10b981");
+      // this.declaration.setProperty("--class-emerald-sec", "#d1fae5");
+      // this.declaration.setProperty("--class-orange", "#ef4444");
+      // this.declaration.setProperty("--class-red", "#ef4444");
       this.$store.commit("changeTheme", theme);
+      console.log(this.declaration);
+    },
+  },
+
+  computed: {
+    themeStatus() {
+      return this.$store.state.theme;
     },
   },
 
@@ -205,6 +243,11 @@ export default {
     // 侦听路由选中
     $route(to) {
       this.selectPath = to.path;
+    },
+
+    // 监听设置中主题的改变
+    themeStatus() {
+      this.changeThemes(this.$store.state.theme);
     },
   },
 };
@@ -256,14 +299,13 @@ export default {
 }
 input {
   user-select: auto;
+  background: none;
+  outline: none;
 }
 textarea {
   user-select: auto;
 }
-input {
-  background: none;
-  outline: none;
-}
+
 input:focus {
   border: none;
 }
@@ -360,7 +402,7 @@ body {
 }
 
 /* 导航标签 */
-.nav > svg {
+.nav svg {
   color: var(--Gray-7);
   margin-left: 0.5rem;
   margin-right: 1.5rem;
@@ -452,7 +494,7 @@ body {
 /* 主视区 */
 .main {
   margin-left: 15.5rem;
-  width: 100%;
+  width: calc(100vw - 15.5rem);
 }
 
 /* 头部 */
